@@ -3,42 +3,31 @@ package main
 import "fmt"
 
 func main() {
-	nameOne := "Chris"           // short hand way of assigning a variable
-	var nameTwo string = "Sarah" // More traditional method
-	fmt.Println(nameOne, nameTwo)
+	// arrays in go have a fixed length, cannot change
+	// var ages [3]int = [3]int{20, 25, 30} // array structure
+	var ages2 = [3]int{20, 25, 30} // this is the same as the array above
 
-	var ageOne int = 20
-	ageTwo := 40 // Same method for ints
-	fmt.Println(ageOne, ageTwo)
+	names := [4]string{"Chris", "Sarah", "Demario", "Mike"}
+	names[1] = "Bob"
 
-	var scoreOne float32 = 25.98
-	var scoreTwo float64 = 99999999999999999999
-	scoreThree := 1.5
+	fmt.Println(ages2, len(ages2)) // prints out the array and the length
+	fmt.Println(names, len(names))
 
-	fmt.Println(scoreOne, scoreTwo, scoreThree)
+	// slices (use arrays under the hoood)
+	var scores = []int{100, 50, 60} // when you dont put in a number in [] it creates a slice
+	scores[2] = 25
+	scores = append(scores, 85)
 
-	fmt.Print("Hello, ")
-	fmt.Print("world, \n")
-	fmt.Print("new line, \n")
+	fmt.Println(scores, len(scores))
 
-	age := 35
-	name := "Chris"
+	// slice ranges
+	rangeOne := names[1:3]
+	rangeTwo := names[2:]   // leaving out the second value stores the first up until the end
+	rangeThree := names[:3] // starts from the beginning of slice and stores up until value
 
-	// Println %_ = format specifier
-	fmt.Println("hello")
-	fmt.Println("goodbye")                                //Println makes the new line automatically
-	fmt.Println("my age is", age, "and my name is", name) // output variables in printing
+	fmt.Println(rangeOne)
+	fmt.Println(rangeTwo, rangeThree)
 
-	// Printf (formatted strings)
-	fmt.Printf("my age is %v and my name is %v \n", age, name)
-	fmt.Printf("my age is %q and my name is %q \n", age, name) // puts quotes around a string variable
-	fmt.Printf("age is of type %T \n", age)                    // Prints the type of the variable
-	fmt.Printf("You scored %0.1f points \n", 225.55)           //Prints a float
-
-	// Sprintf (save formatted strings)
-	var str = fmt.Sprintf("my age is %v and my name is %v \n", age, name)
-	fmt.Println("the saved str is:", str)
-
+	rangeOne = append(rangeOne, "Silly")
+	fmt.Println(rangeOne)
 }
-
-// https://golang.org/ref/spec#Numeric_types
