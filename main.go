@@ -1,33 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
 
 func main() {
-	// arrays in go have a fixed length, cannot change
-	// var ages [3]int = [3]int{20, 25, 30} // array structure
-	var ages2 = [3]int{20, 25, 30} // this is the same as the array above
 
-	names := [4]string{"Chris", "Sarah", "Demario", "Mike"}
-	names[1] = "Bob"
+	greeting := "hello there friends!"
 
-	fmt.Println(ages2, len(ages2)) // prints out the array and the length
-	fmt.Println(names, len(names))
+	fmt.Println(strings.Contains(greeting, "hello"))
+	fmt.Println(strings.ReplaceAll(greeting, "hello", "hi"))
+	fmt.Println(strings.ToUpper(greeting))     // returns new string all uppercase
+	fmt.Println(strings.Index(greeting, "ll")) // gets the position of the second argument
+	fmt.Println(strings.Split(greeting, " "))  // Splits the string based on second argument
 
-	// slices (use arrays under the hoood)
-	var scores = []int{100, 50, 60} // when you dont put in a number in [] it creates a slice
-	scores[2] = 25
-	scores = append(scores, 85)
+	// the original value is unchanged
+	fmt.Println("original string value =", greeting)
 
-	fmt.Println(scores, len(scores))
+	ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
 
-	// slice ranges
-	rangeOne := names[1:3]
-	rangeTwo := names[2:]   // leaving out the second value stores the first up until the end
-	rangeThree := names[:3] // starts from the beginning of slice and stores up until value
+	sort.Ints(ages) // Will slice integers and sort them
+	fmt.Println(ages)
 
-	fmt.Println(rangeOne)
-	fmt.Println(rangeTwo, rangeThree)
+	index := sort.SearchInts(ages, 30)
+	fmt.Println(index)
 
-	rangeOne = append(rangeOne, "Silly")
-	fmt.Println(rangeOne)
+	names := []string{"Bob", "Chris", "Sarah", "Demario", "Jim"}
+
+	sort.Strings(names)
+	fmt.Println(names)
+
+	fmt.Println(sort.SearchStrings(names, "Bob")) // Gives us the position in the slice
+
 }
