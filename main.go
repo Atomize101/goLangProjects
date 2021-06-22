@@ -1,37 +1,33 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-	"strings"
-)
+import "fmt"
 
 func main() {
+	x := 0
+	for x < 5 {
+		fmt.Println("value of x:", x)
+		x++
+	}
 
-	greeting := "hello there friends!"
-
-	fmt.Println(strings.Contains(greeting, "hello"))
-	fmt.Println(strings.ReplaceAll(greeting, "hello", "hi"))
-	fmt.Println(strings.ToUpper(greeting))     // returns new string all uppercase
-	fmt.Println(strings.Index(greeting, "ll")) // gets the position of the second argument
-	fmt.Println(strings.Split(greeting, " "))  // Splits the string based on second argument
-
-	// the original value is unchanged
-	fmt.Println("original string value =", greeting)
-
-	ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
-
-	sort.Ints(ages) // Will slice integers and sort them
-	fmt.Println(ages)
-
-	index := sort.SearchInts(ages, 30)
-	fmt.Println(index)
+	for i := 0; i < 5; i++ {
+		fmt.Println("value of i:", i)
+	}
 
 	names := []string{"Bob", "Chris", "Sarah", "Demario", "Jim"}
 
-	sort.Strings(names)
-	fmt.Println(names)
+	for i := 0; i < len(names); i++ {
+		fmt.Println(names[i])
+	}
 
-	fmt.Println(sort.SearchStrings(names, "Bob")) // Gives us the position in the slice
+	for index, value := range names { //This is like for in
+		fmt.Printf("the value at index %v is %v \n", index, value)
+	}
+
+	for _, value := range names { //This is like for in
+		fmt.Printf("the value is %v \n", value)
+		value = "new string"
+	}
+
+	fmt.Println(names)
 
 }
