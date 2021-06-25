@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func updateName(x string) string {
-	x = "wedge"
-	return x
+func updateName(x *string) string { // When you see the *, it means the type is expecting a pointer
+	*x = "wedge"
+	return *x
 }
 
 func updateMenu(y map[string]float64) {
@@ -18,9 +18,19 @@ func main() {
 	// Non-Pointer Wrapper Values
 	name := "Chris"
 
-	name = updateName(name)
+	//updateName(name)
+
+	//fmt.Println("memory address of name is: ", &name) // memory address of name
+
+	m := &name
+	fmt.Println("memory address:", m)
+	fmt.Println("value at memory address: ", *m)
 
 	fmt.Println(name)
+	updateName(m)
+	fmt.Println(name)
+
+	//fmt.Println(name)
 
 	// group B types > slices, maps, functions
 	// Pointer Wrapper Values
