@@ -1,0 +1,6 @@
+Bill Breakdown: 
+Cake:                     ...$4.99 
+Clam Chowder:             ...$6.99 
+Steak:                    ...$11.99 
+tip:                      ...$4.00 
+total:                    ...$27.97
