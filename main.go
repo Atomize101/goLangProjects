@@ -1,32 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
 
-func add(n1 int, n2 int) int {
-	return n1 + n2
+func ping(w http.ResponseWriter, r *http.Request) {
+	log.Println("Ping")
+	w.Write([]byte("ping"))
 }
-
-func subtract(n1 int, n2 int) int {
-	return n1 - n2
-}
-
-var result int
 
 func main() {
-	var operator string
-	var number1, number2 int
+	addr := ":7171"
 
-	fmt.Println("Please enter a number")
-	fmt.Scanln(&number1)
-	fmt.Println("Please enter the next number")
-	fmt.Scanln(&number2)
-	fmt.Print("Please enter Operator (+,-,/,%,*):")
-	fmt.Scanln(&operator)
-	fmt.Printf("%d %s %d = %d \n", number1, operator, number2, result)
+	http.HandleFunc("/ping", ping)
 
-	switch operator {
-	case "+":
-		result = add(number1, number2)
-		fmt.Println(result)
-	}
+	log.Println("listening on", addr)
+	log.Fatal(http.ListenAndServe(addr, nil))
 }
